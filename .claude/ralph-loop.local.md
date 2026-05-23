@@ -1,0 +1,10 @@
+---
+active: true
+iteration: 1
+session_id: 609e3c79-dc73-455f-87b0-400989b1e31b
+max_iterations: 20
+completion_promise: "COMPLETE"
+started_at: "2026-05-23T14:54:29Z"
+---
+
+Read tasks/prd-intercambia.md to see what was recently accomplished. Start the site localhost-only by trying npm run dev, then npm run start, then python3 -m http.server 8000 --bind 127.0.0.1. Verify it loads in Chrome with no layout issues. Open prd*.md and pick the single highest-priority failing task. Implement exactly one task, run npm run lint or npm run typecheck or npm run build if available, verify in Chrome, and check the browser console for errors. Append a dated entry to tasks/prd-camino-digital.md with what changed, commands run, and Chrome verification. Update that task Status in plan.md from failing to passing. Commit with one clear single-line message - no git init, no remote changes, no push. Repeat for each failing task until all pass. Output exactly COMPLETE when done.

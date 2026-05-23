@@ -1,15 +1,21 @@
+'use client'
+
 import Link from 'next/link'
 import DemoBanner from './DemoBanner'
-
-const navItems = [
-  { href: '/app/dashboard', label: 'Dashboard', icon: '🏠' },
-  { href: '/app/messages', label: 'Mensajes', icon: '💬' },
-  { href: '/app/sessions', label: 'Sesiones', icon: '📅' },
-  { href: '/app/vocabulary', label: 'Vocabulario', icon: '📖' },
-  { href: '/app/profile', label: 'Perfil', icon: '👤' },
-]
+import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
+  const { t } = useLanguage()
+  const s = t.appShell
+
+  const navItems = [
+    { href: '/app/dashboard', label: s.dashboard, icon: '🏠' },
+    { href: '/app/messages', label: s.messages, icon: '💬' },
+    { href: '/app/sessions', label: s.sessions, icon: '📅' },
+    { href: '/app/vocabulary', label: s.vocabulary, icon: '📖' },
+    { href: '/app/profile', label: s.profile, icon: '👤' },
+  ]
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <DemoBanner />
@@ -42,7 +48,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               <div className="w-8 h-8 rounded-full bg-[#DBEAFE] flex items-center justify-center text-sm">👤</div>
               <div>
                 <div className="text-xs font-medium text-gray-800">Martín López</div>
-                <div className="text-xs text-gray-400">Plan gratuito</div>
+                <div className="text-xs text-gray-400">{s.plan}</div>
               </div>
             </div>
           </div>
