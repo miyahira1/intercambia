@@ -4,7 +4,7 @@ import WaitlistForm from '@/components/landing/WaitlistForm'
 
 export const metadata: Metadata = {
   title: 'Cómo funciona — Intercambia',
-  description: 'Descubrí cómo funciona el intercambio de idiomas en Intercambia: el modelo 50/50, el match por IA, la seguridad y las preguntas frecuentes.',
+  description: 'Descubrí cómo funciona el intercambio de idiomas en Intercambia: el modelo 30/30, el match por IA, la seguridad y las preguntas frecuentes.',
 }
 
 const faqItems = [
@@ -52,7 +52,7 @@ export default function ComoFunciona() {
       {/* Exchange model */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">El modelo 50/50</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">El modelo 30/30</h2>
           <div className="bg-[#F8FAFF] border border-[#DBEAFE] rounded-2xl p-8 mb-6">
             <div className="flex flex-col md:flex-row items-center gap-8 text-center">
               <div className="flex-1">
