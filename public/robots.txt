@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://miyahira1.github.io/intercambia/sitemap.xml

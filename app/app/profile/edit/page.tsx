@@ -1,7 +1,6 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
+'use client'
 
-export const metadata: Metadata = { title: 'Editar perfil — Intercambia' }
+import Link from 'next/link'
 
 const languages = ['Español', 'Inglés', 'Portugués', 'Italiano', 'Francés', 'Alemán']
 const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']

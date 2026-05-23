@@ -3,6 +3,10 @@ import Link from 'next/link'
 
 export const metadata: Metadata = { title: 'Sesión en curso — Intercambia' }
 
+export function generateStaticParams() {
+  return [{ id: 'demo' }]
+}
+
 export default function SessionPage() {
   return (
     <div className="flex flex-col h-[calc(100vh-36px)] bg-gray-900">

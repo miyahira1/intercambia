@@ -3,6 +3,10 @@ import Link from 'next/link'
 
 export const metadata: Metadata = { title: 'Resumen de sesión — Intercambia' }
 
+export function generateStaticParams() {
+  return [{ id: 'demo' }]
+}
+
 export default function SessionSummaryPage() {
   return (
     <div className="max-w-xl mx-auto px-4 py-8">
