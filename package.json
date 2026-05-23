@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "deploy": "next build && gh-pages -d out"
+    "deploy": "next build && gh-pages -d out --dotfiles"
   },
   "dependencies": {
     "next": "^16.2.6",
