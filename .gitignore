@@ -9,6 +9,9 @@ node_modules/
 .DS_Store
 *.pem
 
+# TypeScript
+tsconfig.tsbuildinfo
+
 # Debug
 npm-debug.log*
 
