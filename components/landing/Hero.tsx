@@ -44,13 +44,8 @@ export default function Hero() {
           </div>
           <div className="hidden sm:block w-px bg-gray-200" />
           <div>
-            <div className="text-3xl font-bold text-gray-900">50/50</div>
+            <div className="text-3xl font-bold text-gray-900">30/30</div>
             <div className="text-sm text-gray-500 mt-1">minutos por idioma</div>
-          </div>
-          <div className="hidden sm:block w-px bg-gray-200" />
-          <div>
-            <div className="text-3xl font-bold text-gray-900">IA</div>
-            <div className="text-sm text-gray-500 mt-1">resumen post-sesión</div>
           </div>
         </div>
       </div>
