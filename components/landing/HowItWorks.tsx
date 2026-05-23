@@ -15,7 +15,7 @@ const steps = [
   },
   {
     number: '3',
-    title: 'Practicá en sesiones 50/50',
+    title: 'Practicá en sesiones 30/30',
     description:
       '30 minutos en tu idioma, 30 en el de tu compañero. Los dos aprenden, los dos enseñan.',
     emoji: '💬',
