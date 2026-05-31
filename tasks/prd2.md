@@ -223,6 +223,14 @@ Decisión de diseño central acordada: **la velocidad es de interfaz, no cogniti
 - Commands: `npm run typecheck` → clean.
 - Chrome verification: site loads, no console errors.
 
+### 2026-05-30 — SRS-005: Question screen — keyboard response + auto-advance
+- Created `lib/vocab/store.ts` (localStorage CRUD for UserItemState).
+- Created `app/vocab/practice/PracticeClient.tsx` (client component): keys 1–4 / A–D select options; Enter/Space force-advance; auto-advance after 600 ms; green/red color feedback with correct answer always highlighted.
+- Created `app/vocab/practice/page.tsx` (server component) with 6-item demo seed.
+- Turbopack dev worker crashes on Windows (exit 0xc0000142, DLL init failure) — not a code error; `npm run build` succeeds clean.
+- Commands: `npm run typecheck` → clean; `npm run build` → 12 static pages including /vocab/practice.
+- Chrome verification (localhost:8002 static build): page renders, keyboard 1–4 selects options, auto-advances, red/green feedback visible. Zero console errors.
+
 ### 2026-05-30 — SRS-004: Question generation with hard distractors
 - Created `lib/vocab/question.ts` with `buildQuestion(item)` → `Question` (item, shuffled options[], correctIndex).
 - Uses item's curated distractor list (first 3); options are Fisher-Yates shuffled each call.

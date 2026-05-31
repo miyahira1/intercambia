@@ -26,7 +26,7 @@
 | SRS-002 | Learning state per item (Leitner boxes 1–5) | passing |
 | SRS-003 | Interleaved session selector | passing |
 | SRS-004 | Question generation with hard distractors | passing |
-| SRS-005 | Question screen — keyboard response + auto-advance | failing |
+| SRS-005 | Question screen — keyboard response + auto-advance | passing |
 | SRS-006 | Active language selector (EN / JA) | failing |
 | SRS-007 | Japanese layers (meaning / reading / writing) | failing |
 | SRS-008 | Level system — unlock topics by mastered items | failing |
