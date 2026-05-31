@@ -223,6 +223,13 @@ Decisión de diseño central acordada: **la velocidad es de interfaz, no cogniti
 - Commands: `npm run typecheck` → clean.
 - Chrome verification: site loads, no console errors.
 
+### 2026-05-30 — SRS-009: Dashboard — mastery per topic
+- Created `app/vocab/dashboard/DashboardClient.tsx` and `page.tsx`.
+- Shows level bar (mastered/threshold), unlocked topic cards with mastered/total as large number, box distribution mini-bars (red→green), and % accuracy as secondary.
+- EN/JA toggle re-reads localStorage and recomputes all stats.
+- Commands: `npm run typecheck` → clean; `npm run build` → /vocab/dashboard added.
+- Chrome verification (localhost:8004): dashboard loads, topic card shows 0/6, level bar shows "Faltan 5 ítems para el nivel 1", no console errors.
+
 ### 2026-05-30 — SRS-008: Level system — unlock topics by mastered items
 - Created `lib/vocab/levels.ts`: `ITEMS_PER_LEVEL=5`, `computePlayerLevel`, `getUnlockedTopics`, `computeLevelProgress`.
 - Level = floor(masteredItems / 5); topics unlock when `requiredLevel <= playerLevel`.
