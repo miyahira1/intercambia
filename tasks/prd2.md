@@ -223,6 +223,12 @@ Decisión de diseño central acordada: **la velocidad es de interfaz, no cogniti
 - Commands: `npm run typecheck` → clean.
 - Chrome verification: site loads, no console errors.
 
+### 2026-05-30 — SRS-004: Question generation with hard distractors
+- Created `lib/vocab/question.ts` with `buildQuestion(item)` → `Question` (item, shuffled options[], correctIndex).
+- Uses item's curated distractor list (first 3); options are Fisher-Yates shuffled each call.
+- Commands: `npm run typecheck` → clean.
+- Chrome verification: site loads, no console errors.
+
 ### 2026-05-30 — SRS-003: Interleaved session selector
 - Created `lib/vocab/session.ts` with `buildSessionQueue(unlockedTopics, allItems, stateMap, now, maxItems)`.
 - Pulls from all unlocked topics (interleaving). Prioritises overdue items (box ASC, dueAt ASC), then new items.
