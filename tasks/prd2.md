@@ -223,6 +223,13 @@ Decisión de diseño central acordada: **la velocidad es de interfaz, no cogniti
 - Commands: `npm run typecheck` → clean.
 - Chrome verification: site loads, no console errors.
 
+### 2026-05-30 — SRS-012: Gamification — streak, XP, daily goal
+- Created `lib/vocab/gamification.ts`: `recordAnswer(isCorrect)` → increments XP (10/2 pts), resets daily count on new day, increments streak when daily goal first reached. Persisted in localStorage.
+- Added gamification bar to `PracticeClient`: "XP", "🔥 streak", daily progress bar, "today/goal" counter.
+- Default daily goal: 20 items. `setDailyGoal(n)` for customization.
+- Commands: `npm run typecheck` → clean; `npm run build` → clean.
+- Chrome verification (localhost:8006): "0 XP 🔥 0  0/20" bar visible above question, updates on answer, no console errors.
+
 ### 2026-05-30 — SRS-011: Occasional production challenges for mastered items
 - Created `lib/vocab/production.ts`: `isProductionChallenge(state)` triggers every 4 correct answers on a mastered item (configurable via `PRODUCTION_FREQUENCY`). `buildProductionQuestion` creates a reverse question (show meaning, pick the word prompt) — same Leitner state update.
 - Commands: `npm run typecheck` → clean.

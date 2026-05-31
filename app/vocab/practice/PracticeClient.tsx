@@ -7,6 +7,7 @@ import { applyCorrect, applyIncorrect, createInitialState } from '@/lib/vocab/le
 import { loadStates, saveState } from '@/lib/vocab/store'
 import { buildSessionQueue, buildErrorReviewQueue } from '@/lib/vocab/session'
 import { loadActiveLanguage, saveActiveLanguage } from '@/lib/vocab/activeLanguage'
+import { recordAnswer, loadGamification, type GamificationState } from '@/lib/vocab/gamification'
 import type { Item, Topic, LanguageCode } from '@/lib/vocab/types'
 
 const AUTO_ADVANCE_MS = 600
@@ -40,6 +41,7 @@ export default function PracticeClient({ topicsByLang, itemsByLang }: PracticeCl
   const [sessionCorrect, setSessionCorrect] = useState(0)
   const [sessionTotal, setSessionTotal] = useState(0)
   const [finished, setFinished] = useState(false)
+  const [gamification, setGamification] = useState<GamificationState | null>(null)
   const advanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   function startSession(lang: LanguageCode, mode: SessionMode = sessionMode) {
@@ -56,11 +58,12 @@ export default function PracticeClient({ topicsByLang, itemsByLang }: PracticeCl
     setFinished(q.length === 0)
   }
 
-  // Load active language and build queue on mount
+  // Load active language, gamification state, and build queue on mount
   useEffect(() => {
     const lang = loadActiveLanguage()
     setActiveLangState(lang)
     startSession(lang)
+    setGamification(loadGamification())
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -105,6 +108,7 @@ export default function PracticeClient({ topicsByLang, itemsByLang }: PracticeCl
         ? applyCorrect(existing, Date.now())
         : applyIncorrect(existing, Date.now())
       saveState(updated)
+      setGamification(recordAnswer(isCorrect))
 
       advanceTimerRef.current = setTimeout(advance, AUTO_ADVANCE_MS)
     },
@@ -173,6 +177,21 @@ export default function PracticeClient({ topicsByLang, itemsByLang }: PracticeCl
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-8 px-4 max-w-xl mx-auto">
+      {/* Gamification bar */}
+      {gamification && (
+        <div className="w-full flex items-center gap-4 text-sm">
+          <span className="font-bold text-accent">{gamification.xp} XP</span>
+          <span className="text-gray-500">🔥 {gamification.streak}</span>
+          <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-accent transition-all"
+              style={{ width: `${Math.min(100, Math.round((gamification.todayCount / gamification.dailyGoal) * 100))}%` }}
+            />
+          </div>
+          <span className="text-gray-400 text-xs">{gamification.todayCount}/{gamification.dailyGoal}</span>
+        </div>
+      )}
+
       {/* Language selector + progress */}
       <div className="w-full flex items-center justify-between">
         <div className="flex gap-2">
