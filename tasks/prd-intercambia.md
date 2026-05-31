@@ -321,3 +321,12 @@ This PRD covers **Phase 0 only: a fully static website deployed to GitHub Pages.
 - `npm run build` — passed, all 11 static pages generated successfully
 
 **Chrome verification:** Navigated to `/intercambia/como-funciona`. "Cómo funciona" nav link rendered bold and blue while other links remained gray. No console errors. Footer with logo, tagline, privacy/terms/contact links, and social icons visible.
+
+### 2026-05-30 — US-006: Waitlist form JS-disabled fallback
+
+**What changed:** Added `action` and `method="POST"` attributes to the `<form>` element in `components/landing/WaitlistForm.tsx` so the form works via Formspree's HTML fallback when JavaScript is disabled. Added `name="email"` to the email input so Formspree can identify the field in HTML form submissions.
+
+**Commands run:**
+- `npm run typecheck` — passed with no errors
+
+**Chrome verification:** Navigated to `/intercambia`. Home page loads, "Inicio" nav link bold/blue. Waitlist form renders correctly with email input and "Quiero unirme" button. No console errors.

@@ -49,10 +49,16 @@ export default function WaitlistForm() {
             {w.success}
           </div>
         ) : (
-          <form onSubmit={handleSubmit} noValidate>
+          <form
+            action={`https://formspree.io/f/${FORMSPREE_ID}`}
+            method="POST"
+            onSubmit={handleSubmit}
+            noValidate
+          >
             <div className="flex flex-col sm:flex-row gap-3">
               <input
                 type="email"
+                name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={w.placeholder}

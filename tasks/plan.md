@@ -7,7 +7,7 @@
 | US-003 | Landing page — hero section | passing |
 | US-004 | Landing page — "Cómo funciona" section | passing |
 | US-005 | Landing page — social proof section | passing |
-| US-006 | Landing page — waitlist signup form | failing |
+| US-006 | Landing page — waitlist signup form | passing |
 | US-007 | Landing page — pricing section | passing |
 | US-008 | "Cómo funciona" page (standalone) | passing |
 | US-009 | Pricing page (standalone) | passing |
