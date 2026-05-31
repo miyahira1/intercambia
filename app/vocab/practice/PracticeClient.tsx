@@ -5,7 +5,7 @@ import type { Question } from '@/lib/vocab/question'
 import { buildQuestion } from '@/lib/vocab/question'
 import { applyCorrect, applyIncorrect, createInitialState } from '@/lib/vocab/leitner'
 import { loadStates, saveState } from '@/lib/vocab/store'
-import { buildSessionQueue } from '@/lib/vocab/session'
+import { buildSessionQueue, buildErrorReviewQueue } from '@/lib/vocab/session'
 import { loadActiveLanguage, saveActiveLanguage } from '@/lib/vocab/activeLanguage'
 import type { Item, Topic, LanguageCode } from '@/lib/vocab/types'
 
@@ -20,13 +20,18 @@ interface PracticeClientProps {
   itemsByLang: Record<LanguageCode, Item[]>
 }
 
-function buildQueue(lang: LanguageCode, topics: Topic[], items: Item[]) {
+type SessionMode = 'normal' | 'errors'
+
+function buildQueue(lang: LanguageCode, topics: Topic[], items: Item[], mode: SessionMode) {
   const stateMap = loadStates(lang)
-  return buildSessionQueue(topics, items, stateMap, Date.now())
+  return mode === 'errors'
+    ? buildErrorReviewQueue(topics, items, stateMap, Date.now())
+    : buildSessionQueue(topics, items, stateMap, Date.now())
 }
 
 export default function PracticeClient({ topicsByLang, itemsByLang }: PracticeClientProps) {
   const [activeLang, setActiveLangState] = useState<LanguageCode>('en')
+  const [sessionMode, setSessionMode] = useState<SessionMode>('normal')
   const [queue, setQueue] = useState<Item[]>([])
   const [queueIndex, setQueueIndex] = useState(0)
   const [question, setQuestion] = useState<Question | null>(null)
@@ -37,10 +42,10 @@ export default function PracticeClient({ topicsByLang, itemsByLang }: PracticeCl
   const [finished, setFinished] = useState(false)
   const advanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  function startSession(lang: LanguageCode) {
+  function startSession(lang: LanguageCode, mode: SessionMode = sessionMode) {
     const topics = topicsByLang[lang] ?? []
     const items = itemsByLang[lang] ?? []
-    const q = buildQueue(lang, topics, items)
+    const q = buildQueue(lang, topics, items, mode)
     setQueue(q)
     setQueueIndex(0)
     setQuestion(q.length > 0 ? buildQuestion(q[0]) : null)
@@ -63,7 +68,13 @@ export default function PracticeClient({ topicsByLang, itemsByLang }: PracticeCl
     if (advanceTimerRef.current) clearTimeout(advanceTimerRef.current)
     saveActiveLanguage(lang)
     setActiveLangState(lang)
-    startSession(lang)
+    startSession(lang, sessionMode)
+  }
+
+  function switchMode(mode: SessionMode) {
+    if (advanceTimerRef.current) clearTimeout(advanceTimerRef.current)
+    setSessionMode(mode)
+    startSession(activeLang, mode)
   }
 
   const advance = useCallback(() => {
@@ -182,6 +193,23 @@ export default function PracticeClient({ topicsByLang, itemsByLang }: PracticeCl
         <div className="text-sm text-gray-500">
           {queueIndex + 1} / {queue.length} · {sessionCorrect} correctas
         </div>
+      </div>
+
+      {/* Mode toggle */}
+      <div className="flex gap-2 self-center">
+        {(['normal', 'errors'] as SessionMode[]).map((m) => (
+          <button
+            key={m}
+            onClick={() => switchMode(m)}
+            className={`px-3 py-1 rounded-lg text-xs font-semibold border-2 transition ${
+              sessionMode === m
+                ? 'bg-accent text-white border-accent'
+                : 'bg-white text-gray-500 border-gray-200 hover:border-accent'
+            }`}
+          >
+            {m === 'normal' ? 'Normal' : 'Errores recientes'}
+          </button>
+        ))}
       </div>
 
       {/* Prompt */}

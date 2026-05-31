@@ -223,6 +223,12 @@ Decisión de diseño central acordada: **la velocidad es de interfaz, no cogniti
 - Commands: `npm run typecheck` → clean.
 - Chrome verification: site loads, no console errors.
 
+### 2026-05-30 — SRS-010: Recent-errors review mode
+- Added `buildErrorReviewQueue` to `lib/vocab/session.ts`: filters items in box 1–2 with `lastSeenAt > 0`, delegates to the standard `buildSessionQueue` (same scheduler, no parallel logic).
+- Added `SessionMode` type and mode toggle UI ("Normal" / "Errores recientes") to `PracticeClient`.
+- Commands: `npm run typecheck` → clean; `npm run build` → clean.
+- Chrome verification (localhost:8005): mode toggle visible, "Errores recientes" button renders correctly, switching mode restarts session, no console errors.
+
 ### 2026-05-30 — SRS-009: Dashboard — mastery per topic
 - Created `app/vocab/dashboard/DashboardClient.tsx` and `page.tsx`.
 - Shows level bar (mastered/threshold), unlocked topic cards with mastered/total as large number, box distribution mini-bars (red→green), and % accuracy as secondary.

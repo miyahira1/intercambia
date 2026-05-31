@@ -31,7 +31,7 @@
 | SRS-007 | Japanese layers (meaning / reading / writing) | passing |
 | SRS-008 | Level system — unlock topics by mastered items | passing |
 | SRS-009 | Dashboard — mastery per topic | passing |
-| SRS-010 | Recent-errors review mode | failing |
+| SRS-010 | Recent-errors review mode | passing |
 | SRS-011 | Occasional production challenges for mastered items | failing |
 | SRS-012 | Gamification — streak, XP, daily goal | failing |
 | SRS-013 | Seed content — English and Japanese | failing |

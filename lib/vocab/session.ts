@@ -76,3 +76,34 @@ export function buildSessionQueue(
 
   return queue.slice(0, maxItems)
 }
+
+// Builds a review session using only items in box 1–2 that have been seen at least once.
+// Uses the same Leitner scheduler (no parallel logic).
+export function buildErrorReviewQueue(
+  unlockedTopics: Topic[],
+  allItems: Item[],
+  stateMap: Map<string, UserItemState>,
+  now: number,
+  maxItems = 20,
+): Item[] {
+  if (unlockedTopics.length === 0) return []
+
+  const unlockedTopicIds = new Set(unlockedTopics.map((t) => t.id))
+
+  // Only items in box 1–2 that have been seen (lastSeenAt > 0)
+  const errorItems = allItems.filter((item) => {
+    if (!unlockedTopicIds.has(item.topicId)) return false
+    const state = stateMap.get(item.id)
+    return state !== undefined && state.lastSeenAt > 0 && state.box <= 2
+  })
+
+  // Reuse the standard queue builder on this filtered set
+  // Pass all topics but only the filtered items so the overdue logic still applies
+  const filteredStateMap = new Map<string, UserItemState>()
+  for (const item of errorItems) {
+    const s = stateMap.get(item.id)
+    if (s) filteredStateMap.set(item.id, s)
+  }
+
+  return buildSessionQueue(unlockedTopics, errorItems, filteredStateMap, now, maxItems)
+}
