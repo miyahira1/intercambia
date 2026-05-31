@@ -29,7 +29,7 @@
 | SRS-005 | Question screen — keyboard response + auto-advance | passing |
 | SRS-006 | Active language selector (EN / JA) | passing |
 | SRS-007 | Japanese layers (meaning / reading / writing) | passing |
-| SRS-008 | Level system — unlock topics by mastered items | failing |
+| SRS-008 | Level system — unlock topics by mastered items | passing |
 | SRS-009 | Dashboard — mastery per topic | failing |
 | SRS-010 | Recent-errors review mode | failing |
 | SRS-011 | Occasional production challenges for mastered items | failing |

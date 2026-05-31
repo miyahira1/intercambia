@@ -223,6 +223,13 @@ Decisión de diseño central acordada: **la velocidad es de interfaz, no cogniti
 - Commands: `npm run typecheck` → clean.
 - Chrome verification: site loads, no console errors.
 
+### 2026-05-30 — SRS-008: Level system — unlock topics by mastered items
+- Created `lib/vocab/levels.ts`: `ITEMS_PER_LEVEL=5`, `computePlayerLevel`, `getUnlockedTopics`, `computeLevelProgress`.
+- Level = floor(masteredItems / 5); topics unlock when `requiredLevel <= playerLevel`.
+- `computeLevelProgress` returns level, masteredCount, itemsToNextLevel for dashboard display.
+- Commands: `npm run typecheck` → clean.
+- Chrome verification: site loads, no console errors.
+
 ### 2026-05-30 — SRS-006 + SRS-007: Active language selector and Japanese layers
 - Added `lib/vocab/activeLanguage.ts` (localStorage persistence for active language EN/JA).
 - Updated `PracticeClient` to accept `topicsByLang`/`itemsByLang`; added EN/JA toggle buttons; switching resets session with the new language queue.
