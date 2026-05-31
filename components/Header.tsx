@@ -2,11 +2,18 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const { t, lang, setLang } = useLanguage()
+  const pathname = usePathname()
+
+  function navClass(href: string) {
+    const active = pathname === href || (href !== '/' && pathname.startsWith(href))
+    return `hover:text-[#1E40AF] transition-colors ${active ? 'text-[#1E40AF] font-semibold' : ''}`
+  }
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
@@ -21,10 +28,10 @@ export default function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
-          <Link href="/" className="hover:text-[#1E40AF] transition-colors">{t.header.home}</Link>
-          <Link href="/como-funciona" className="hover:text-[#1E40AF] transition-colors">{t.header.howItWorks}</Link>
-          <Link href="/precios" className="hover:text-[#1E40AF] transition-colors">{t.header.pricing}</Link>
-          <Link href="/app/dashboard" className="hover:text-[#1E40AF] transition-colors">{t.header.login}</Link>
+          <Link href="/" className={navClass('/')}>{t.header.home}</Link>
+          <Link href="/como-funciona" className={navClass('/como-funciona')}>{t.header.howItWorks}</Link>
+          <Link href="/precios" className={navClass('/precios')}>{t.header.pricing}</Link>
+          <Link href="/app/dashboard" className={navClass('/app/dashboard')}>{t.header.login}</Link>
           <button
             onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
             className="border border-gray-200 text-gray-600 px-3 py-1.5 rounded-lg hover:border-[#1E40AF] hover:text-[#1E40AF] transition-colors text-xs font-semibold"
@@ -70,10 +77,10 @@ export default function Header() {
       {menuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 px-4 pb-4">
           <nav className="flex flex-col gap-4 pt-4 text-sm font-medium text-gray-700">
-            <Link href="/" onClick={() => setMenuOpen(false)} className="hover:text-[#1E40AF]">{t.header.home}</Link>
-            <Link href="/como-funciona" onClick={() => setMenuOpen(false)} className="hover:text-[#1E40AF]">{t.header.howItWorks}</Link>
-            <Link href="/precios" onClick={() => setMenuOpen(false)} className="hover:text-[#1E40AF]">{t.header.pricing}</Link>
-            <Link href="/app/dashboard" onClick={() => setMenuOpen(false)} className="hover:text-[#1E40AF]">{t.header.login}</Link>
+            <Link href="/" onClick={() => setMenuOpen(false)} className={navClass('/')}>{t.header.home}</Link>
+            <Link href="/como-funciona" onClick={() => setMenuOpen(false)} className={navClass('/como-funciona')}>{t.header.howItWorks}</Link>
+            <Link href="/precios" onClick={() => setMenuOpen(false)} className={navClass('/precios')}>{t.header.pricing}</Link>
+            <Link href="/app/dashboard" onClick={() => setMenuOpen(false)} className={navClass('/app/dashboard')}>{t.header.login}</Link>
             <Link
               href="/#waitlist"
               onClick={() => setMenuOpen(false)}

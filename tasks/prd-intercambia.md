@@ -307,3 +307,17 @@ This PRD covers **Phase 0 only: a fully static website deployed to GitHub Pages.
 4. **Logo:** Text-only logotype for Phase 0 — "Intercambia" in Inter 700, color `#1E40AF`, with a small inline SVG icon of two opposing arrows (⇄) to the left. No custom logo work needed to start building.
 
 5. **"Iniciar sesión" nav link:** Points to `/app/dashboard` (the static mockup). Makes the site feel complete for demos and investor walkthroughs. The demo banner on that page makes it clear it's not live.
+
+---
+
+## Change Log
+
+### 2026-05-30 — US-002: Active nav link highlighting
+
+**What changed:** Added `usePathname()` from `next/navigation` to `components/Header.tsx`. Created a `navClass(href)` helper that compares the current pathname against each nav link's href and applies `text-[#1E40AF] font-semibold` when active. Applied to both desktop nav and mobile drawer links.
+
+**Commands run:**
+- `npm run typecheck` — passed with no errors
+- `npm run build` — passed, all 11 static pages generated successfully
+
+**Chrome verification:** Navigated to `/intercambia/como-funciona`. "Cómo funciona" nav link rendered bold and blue while other links remained gray. No console errors. Footer with logo, tagline, privacy/terms/contact links, and social icons visible.
