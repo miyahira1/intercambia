@@ -222,3 +222,10 @@ Decisión de diseño central acordada: **la velocidad es de interfaz, no cogniti
 - Correct answer raises box by 1 (max 5); incorrect resets to box 1. Box 4–5 = mastered.
 - Commands: `npm run typecheck` → clean.
 - Chrome verification: site loads, no console errors.
+
+### 2026-05-30 — SRS-003: Interleaved session selector
+- Created `lib/vocab/session.ts` with `buildSessionQueue(unlockedTopics, allItems, stateMap, now, maxItems)`.
+- Pulls from all unlocked topics (interleaving). Prioritises overdue items (box ASC, dueAt ASC), then new items.
+- Prevents two consecutive identical items.
+- Commands: `npm run typecheck` → clean.
+- Chrome verification: site loads, no console errors.
