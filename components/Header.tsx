@@ -31,6 +31,7 @@ export default function Header() {
           <Link href="/" className={navClass('/')}>{t.header.home}</Link>
           <Link href="/como-funciona" className={navClass('/como-funciona')}>{t.header.howItWorks}</Link>
           <Link href="/precios" className={navClass('/precios')}>{t.header.pricing}</Link>
+          <Link href="/vocab/practice" className={navClass('/vocab')}>{t.header.practice}</Link>
           <Link href="/app/dashboard" className={navClass('/app/dashboard')}>{t.header.login}</Link>
           <button
             onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
@@ -80,6 +81,7 @@ export default function Header() {
             <Link href="/" onClick={() => setMenuOpen(false)} className={navClass('/')}>{t.header.home}</Link>
             <Link href="/como-funciona" onClick={() => setMenuOpen(false)} className={navClass('/como-funciona')}>{t.header.howItWorks}</Link>
             <Link href="/precios" onClick={() => setMenuOpen(false)} className={navClass('/precios')}>{t.header.pricing}</Link>
+            <Link href="/vocab/practice" onClick={() => setMenuOpen(false)} className={navClass('/vocab')}>{t.header.practice}</Link>
             <Link href="/app/dashboard" onClick={() => setMenuOpen(false)} className={navClass('/app/dashboard')}>{t.header.login}</Link>
             <Link
               href="/#waitlist"
