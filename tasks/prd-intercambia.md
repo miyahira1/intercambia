@@ -343,3 +343,15 @@ This PRD covers **Phase 0 only: a fully static website deployed to GitHub Pages.
 - `npm run build` — passed, all 11 static pages generated
 
 **Chrome verification:** Navigated to `/intercambia/app/profile/edit`. Page title shows "Editar perfil — Intercambia", meta description verified via JavaScript. Profile edit form renders with all fields. No console errors.
+
+### 2026-05-30 — US-014: Mobile responsiveness — touch targets
+
+**What changed:**
+- `components/app/AppShell.tsx`: Bottom nav links now use `min-h-[44px] flex-1 justify-center py-2` to guarantee ≥44px touch targets.
+- `components/Header.tsx`: Hamburger button now uses `min-w-[44px] min-h-[44px] flex items-center justify-center`.
+- `app/app/messages/MessagesContent.tsx` chat panel already uses `hidden md:flex` — correct mobile full-screen behavior confirmed.
+
+**Commands run:**
+- `npm run typecheck` — passed
+
+**Chrome verification:** Navigated to `/intercambia/app/dashboard`. Dashboard renders with sidebar nav, 3 partner cards, upcoming sessions. Measured bottom nav links via JavaScript: 62px height (passes 44px min). Hamburger button measured at 44×44px. No console errors.

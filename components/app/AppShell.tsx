@@ -61,12 +61,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* Bottom nav — mobile */}
-      <nav className="md:hidden fixed bottom-0 inset-x-0 bg-white border-t border-gray-200 flex justify-around py-2 z-40">
+      <nav className="md:hidden fixed bottom-0 inset-x-0 bg-white border-t border-gray-200 flex justify-around z-40">
         {navItems.map((item) => (
           <Link
             key={item.href}
             href={item.href}
-            className="flex flex-col items-center gap-0.5 text-xs text-gray-500 hover:text-[#1E40AF] px-2 py-1"
+            className="flex flex-col items-center justify-center gap-0.5 text-xs text-gray-500 hover:text-[#1E40AF] flex-1 min-h-[44px] py-2"
           >
             <span className="text-lg">{item.icon}</span>
             <span>{item.label}</span>

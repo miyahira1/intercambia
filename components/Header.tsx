@@ -56,7 +56,7 @@ export default function Header() {
             {t.header.switchLang}
           </button>
           <button
-            className="p-2 text-gray-600"
+            className="p-2 text-gray-600 min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Abrir menú"
           >
