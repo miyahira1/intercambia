@@ -23,7 +23,7 @@
 | ID | Title | Status |
 |----|-------|--------|
 | SRS-001 | Data model — languages, topics, items, item_type | passing |
-| SRS-002 | Learning state per item (Leitner boxes 1–5) | failing |
+| SRS-002 | Learning state per item (Leitner boxes 1–5) | passing |
 | SRS-003 | Interleaved session selector | failing |
 | SRS-004 | Question generation with hard distractors | failing |
 | SRS-005 | Question screen — keyboard response + auto-advance | failing |

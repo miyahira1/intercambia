@@ -215,3 +215,10 @@ Decisión de diseño central acordada: **la velocidad es de interfaz, no cogniti
 - `Item.baseWordId` links Japanese vocabulary layers to a shared base word.
 - Commands: `npm run typecheck` → clean (no errors).
 - Chrome verification: site loads at http://localhost:3001/intercambia, no console errors.
+
+### 2026-05-30 — SRS-002: Learning state per item (Leitner)
+- Created `lib/vocab/leitner.ts` with `UserItemState` interface, `BOX_INTERVALS_MS` config, `MASTERED_BOX_THRESHOLD=4`.
+- Pure functions: `applyCorrect`, `applyIncorrect`, `createInitialState`, `isMastered`.
+- Correct answer raises box by 1 (max 5); incorrect resets to box 1. Box 4–5 = mastered.
+- Commands: `npm run typecheck` → clean.
+- Chrome verification: site loads, no console errors.
