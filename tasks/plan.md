@@ -17,3 +17,21 @@
 | US-013 | App shell — messages page | passing |
 | US-014 | Mobile responsiveness pass | passing |
 | US-015 | SEO and meta tags | passing |
+
+# SRS Vocabulary Trainer — Task Tracking (prd2.md)
+
+| ID | Title | Status |
+|----|-------|--------|
+| SRS-001 | Data model — languages, topics, items, item_type | passing |
+| SRS-002 | Learning state per item (Leitner boxes 1–5) | failing |
+| SRS-003 | Interleaved session selector | failing |
+| SRS-004 | Question generation with hard distractors | failing |
+| SRS-005 | Question screen — keyboard response + auto-advance | failing |
+| SRS-006 | Active language selector (EN / JA) | failing |
+| SRS-007 | Japanese layers (meaning / reading / writing) | failing |
+| SRS-008 | Level system — unlock topics by mastered items | failing |
+| SRS-009 | Dashboard — mastery per topic | failing |
+| SRS-010 | Recent-errors review mode | failing |
+| SRS-011 | Occasional production challenges for mastered items | failing |
+| SRS-012 | Gamification — streak, XP, daily goal | failing |
+| SRS-013 | Seed content — English and Japanese | failing |
