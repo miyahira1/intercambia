@@ -16,4 +16,4 @@
 | US-012 | App shell — session/call page | passing |
 | US-013 | App shell — messages page | passing |
 | US-014 | Mobile responsiveness pass | failing |
-| US-015 | SEO and meta tags | failing |
+| US-015 | SEO and meta tags | passing |

@@ -330,3 +330,16 @@ This PRD covers **Phase 0 only: a fully static website deployed to GitHub Pages.
 - `npm run typecheck` — passed with no errors
 
 **Chrome verification:** Navigated to `/intercambia`. Home page loads, "Inicio" nav link bold/blue. Waitlist form renders correctly with email input and "Quiero unirme" button. No console errors.
+
+### 2026-05-30 — US-015: SEO — unique descriptions and sitemap
+
+**What changed:**
+- Added unique `description` to metadata on all app shell pages: `app/app/dashboard/page.tsx`, `app/app/messages/page.tsx`, `app/app/profile/page.tsx`, `app/app/session/[id]/page.tsx`, `app/app/session/[id]/summary/page.tsx`.
+- Extracted `app/app/profile/edit/page.tsx` (client component) into `EditProfileContent.tsx` and created a server component `page.tsx` that exports metadata with title and description.
+- Updated `public/sitemap.xml` to include all 9 static routes (was only 3).
+
+**Commands run:**
+- `npm run typecheck` — passed
+- `npm run build` — passed, all 11 static pages generated
+
+**Chrome verification:** Navigated to `/intercambia/app/profile/edit`. Page title shows "Editar perfil — Intercambia", meta description verified via JavaScript. Profile edit form renders with all fields. No console errors.
