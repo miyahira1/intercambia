@@ -223,6 +223,11 @@ Decisión de diseño central acordada: **la velocidad es de interfaz, no cogniti
 - Commands: `npm run typecheck` → clean.
 - Chrome verification: site loads, no console errors.
 
+### 2026-05-30 — SRS-011: Occasional production challenges for mastered items
+- Created `lib/vocab/production.ts`: `isProductionChallenge(state)` triggers every 4 correct answers on a mastered item (configurable via `PRODUCTION_FREQUENCY`). `buildProductionQuestion` creates a reverse question (show meaning, pick the word prompt) — same Leitner state update.
+- Commands: `npm run typecheck` → clean.
+- Chrome verification: site loads, no console errors (logic module only, wired up in practice during sessions).
+
 ### 2026-05-30 — SRS-010: Recent-errors review mode
 - Added `buildErrorReviewQueue` to `lib/vocab/session.ts`: filters items in box 1–2 with `lastSeenAt > 0`, delegates to the standard `buildSessionQueue` (same scheduler, no parallel logic).
 - Added `SessionMode` type and mode toggle UI ("Normal" / "Errores recientes") to `PracticeClient`.
