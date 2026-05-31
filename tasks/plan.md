@@ -27,8 +27,8 @@
 | SRS-003 | Interleaved session selector | passing |
 | SRS-004 | Question generation with hard distractors | passing |
 | SRS-005 | Question screen — keyboard response + auto-advance | passing |
-| SRS-006 | Active language selector (EN / JA) | failing |
-| SRS-007 | Japanese layers (meaning / reading / writing) | failing |
+| SRS-006 | Active language selector (EN / JA) | passing |
+| SRS-007 | Japanese layers (meaning / reading / writing) | passing |
 | SRS-008 | Level system — unlock topics by mastered items | failing |
 | SRS-009 | Dashboard — mastery per topic | failing |
 | SRS-010 | Recent-errors review mode | failing |

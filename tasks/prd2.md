@@ -223,6 +223,13 @@ Decisión de diseño central acordada: **la velocidad es de interfaz, no cogniti
 - Commands: `npm run typecheck` → clean.
 - Chrome verification: site loads, no console errors.
 
+### 2026-05-30 — SRS-006 + SRS-007: Active language selector and Japanese layers
+- Added `lib/vocab/activeLanguage.ts` (localStorage persistence for active language EN/JA).
+- Updated `PracticeClient` to accept `topicsByLang`/`itemsByLang`; added EN/JA toggle buttons; switching resets session with the new language queue.
+- Updated `page.tsx` with Japanese demo seed: vocab_meaning (猫→gato) and vocab_reading (猫→ねこ) as separate items with `baseWordId`, plus grammar (は vs が).
+- Commands: `npm run typecheck` → clean; `npm run build` → clean.
+- Chrome verification (localhost:8003): EN/JA toggle works, Japanese kanji renders, layers (meaning/reading) are independent items.
+
 ### 2026-05-30 — SRS-005: Question screen — keyboard response + auto-advance
 - Created `lib/vocab/store.ts` (localStorage CRUD for UserItemState).
 - Created `app/vocab/practice/PracticeClient.tsx` (client component): keys 1–4 / A–D select options; Enter/Space force-advance; auto-advance after 600 ms; green/red color feedback with correct answer always highlighted.

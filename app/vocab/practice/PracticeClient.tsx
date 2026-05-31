@@ -6,18 +6,27 @@ import { buildQuestion } from '@/lib/vocab/question'
 import { applyCorrect, applyIncorrect, createInitialState } from '@/lib/vocab/leitner'
 import { loadStates, saveState } from '@/lib/vocab/store'
 import { buildSessionQueue } from '@/lib/vocab/session'
-import type { Item, Topic } from '@/lib/vocab/types'
+import { loadActiveLanguage, saveActiveLanguage } from '@/lib/vocab/activeLanguage'
+import type { Item, Topic, LanguageCode } from '@/lib/vocab/types'
 
 const AUTO_ADVANCE_MS = 600
 
 type AnswerState = 'unanswered' | 'correct' | 'incorrect'
 
 interface PracticeClientProps {
-  topics: Topic[]
-  items: Item[]
+  // All topics keyed by language code
+  topicsByLang: Record<LanguageCode, Topic[]>
+  // All items keyed by language code
+  itemsByLang: Record<LanguageCode, Item[]>
 }
 
-export default function PracticeClient({ topics, items }: PracticeClientProps) {
+function buildQueue(lang: LanguageCode, topics: Topic[], items: Item[]) {
+  const stateMap = loadStates(lang)
+  return buildSessionQueue(topics, items, stateMap, Date.now())
+}
+
+export default function PracticeClient({ topicsByLang, itemsByLang }: PracticeClientProps) {
+  const [activeLang, setActiveLangState] = useState<LanguageCode>('en')
   const [queue, setQueue] = useState<Item[]>([])
   const [queueIndex, setQueueIndex] = useState(0)
   const [question, setQuestion] = useState<Question | null>(null)
@@ -28,18 +37,34 @@ export default function PracticeClient({ topics, items }: PracticeClientProps) {
   const [finished, setFinished] = useState(false)
   const advanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  // Build initial queue on mount
-  useEffect(() => {
-    const stateMap = loadStates('en')
-    const q = buildSessionQueue(topics, items, stateMap, Date.now())
-    if (q.length === 0) {
-      setFinished(true)
-      return
-    }
+  function startSession(lang: LanguageCode) {
+    const topics = topicsByLang[lang] ?? []
+    const items = itemsByLang[lang] ?? []
+    const q = buildQueue(lang, topics, items)
     setQueue(q)
-    setQuestion(buildQuestion(q[0]))
     setQueueIndex(0)
-  }, [topics, items])
+    setQuestion(q.length > 0 ? buildQuestion(q[0]) : null)
+    setAnswerState('unanswered')
+    setChosenIndex(null)
+    setSessionCorrect(0)
+    setSessionTotal(0)
+    setFinished(q.length === 0)
+  }
+
+  // Load active language and build queue on mount
+  useEffect(() => {
+    const lang = loadActiveLanguage()
+    setActiveLangState(lang)
+    startSession(lang)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  function switchLang(lang: LanguageCode) {
+    if (advanceTimerRef.current) clearTimeout(advanceTimerRef.current)
+    saveActiveLanguage(lang)
+    setActiveLangState(lang)
+    startSession(lang)
+  }
 
   const advance = useCallback(() => {
     if (advanceTimerRef.current) clearTimeout(advanceTimerRef.current)
@@ -63,9 +88,8 @@ export default function PracticeClient({ topics, items }: PracticeClientProps) {
       setSessionTotal((n) => n + 1)
       if (isCorrect) setSessionCorrect((n) => n + 1)
 
-      // Persist Leitner state
-      const stateMap = loadStates('en')
-      const existing = stateMap.get(question.item.id) ?? createInitialState('local', question.item.id, 'en')
+      const stateMap = loadStates(activeLang)
+      const existing = stateMap.get(question.item.id) ?? createInitialState('local', question.item.id, activeLang)
       const updated = isCorrect
         ? applyCorrect(existing, Date.now())
         : applyIncorrect(existing, Date.now())
@@ -73,7 +97,7 @@ export default function PracticeClient({ topics, items }: PracticeClientProps) {
 
       advanceTimerRef.current = setTimeout(advance, AUTO_ADVANCE_MS)
     },
-    [answerState, question, advance],
+    [answerState, question, advance, activeLang],
   )
 
   // Keyboard handler: 1–4, A–D, Enter/Space
@@ -99,15 +123,33 @@ export default function PracticeClient({ topics, items }: PracticeClientProps) {
     return () => window.removeEventListener('keydown', onKey)
   }, [answerState, handleAnswer, advance])
 
+  const langLabel: Record<LanguageCode, string> = { en: 'Inglés', ja: 'Japonés' }
+
   if (finished) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen gap-6 px-4">
+        {/* Language selector */}
+        <div className="flex gap-2">
+          {(['en', 'ja'] as LanguageCode[]).map((l) => (
+            <button
+              key={l}
+              onClick={() => switchLang(l)}
+              className={`px-4 py-2 rounded-lg font-semibold text-sm border-2 transition ${
+                activeLang === l
+                  ? 'bg-primary text-white border-primary'
+                  : 'bg-white text-gray-600 border-gray-200 hover:border-primary'
+              }`}
+            >
+              {langLabel[l]}
+            </button>
+          ))}
+        </div>
         <h2 className="text-2xl font-bold">¡Sesión completada!</h2>
         <p className="text-lg text-gray-600">
           {sessionCorrect} / {sessionTotal} correctas
         </p>
         <button
-          onClick={() => window.location.reload()}
+          onClick={() => startSession(activeLang)}
           className="px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:opacity-90 transition"
         >
           Nueva sesión
@@ -120,10 +162,26 @@ export default function PracticeClient({ topics, items }: PracticeClientProps) {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-8 px-4 max-w-xl mx-auto">
-      {/* Progress */}
-      <div className="w-full flex justify-between text-sm text-gray-500">
-        <span>{queueIndex + 1} / {queue.length}</span>
-        <span>{sessionCorrect} correctas</span>
+      {/* Language selector + progress */}
+      <div className="w-full flex items-center justify-between">
+        <div className="flex gap-2">
+          {(['en', 'ja'] as LanguageCode[]).map((l) => (
+            <button
+              key={l}
+              onClick={() => switchLang(l)}
+              className={`px-3 py-1.5 rounded-lg font-semibold text-xs border-2 transition ${
+                activeLang === l
+                  ? 'bg-primary text-white border-primary'
+                  : 'bg-white text-gray-500 border-gray-200 hover:border-primary'
+              }`}
+            >
+              {langLabel[l]}
+            </button>
+          ))}
+        </div>
+        <div className="text-sm text-gray-500">
+          {queueIndex + 1} / {queue.length} · {sessionCorrect} correctas
+        </div>
       </div>
 
       {/* Prompt */}
