@@ -1,0 +1,27 @@
+{
+  "topics": [
+    { "id": "t-en-vocab1", "languageCode": "en", "name": "Vocabulario esencial", "requiredLevel": 0, "order": 1 },
+    { "id": "t-en-grammar1", "languageCode": "en", "name": "Gramática básica", "requiredLevel": 0, "order": 2 },
+    { "id": "t-en-vocab2", "languageCode": "en", "name": "Verbos de acción", "requiredLevel": 1, "order": 3 }
+  ],
+  "items": [
+    { "id": "en-v1-001", "topicId": "t-en-vocab1", "itemType": "vocab_meaning", "prompt": "apple", "correctAnswer": "manzana", "distractors": ["naranja", "uva", "pera"] },
+    { "id": "en-v1-002", "topicId": "t-en-vocab1", "itemType": "vocab_meaning", "prompt": "book", "correctAnswer": "libro", "distractors": ["mesa", "silla", "puerta"] },
+    { "id": "en-v1-003", "topicId": "t-en-vocab1", "itemType": "vocab_meaning", "prompt": "house", "correctAnswer": "casa", "distractors": ["coche", "árbol", "río"] },
+    { "id": "en-v1-004", "topicId": "t-en-vocab1", "itemType": "vocab_meaning", "prompt": "water", "correctAnswer": "agua", "distractors": ["fuego", "tierra", "aire"] },
+    { "id": "en-v1-005", "topicId": "t-en-vocab1", "itemType": "vocab_meaning", "prompt": "time", "correctAnswer": "tiempo", "distractors": ["espacio", "clima", "lugar"] },
+    { "id": "en-v1-006", "topicId": "t-en-vocab1", "itemType": "vocab_meaning", "prompt": "friend", "correctAnswer": "amigo", "distractors": ["enemigo", "vecino", "jefe"] },
+    { "id": "en-v1-007", "topicId": "t-en-vocab1", "itemType": "vocab_meaning", "prompt": "school", "correctAnswer": "escuela", "distractors": ["hospital", "banco", "tienda"] },
+    { "id": "en-v1-008", "topicId": "t-en-vocab1", "itemType": "vocab_meaning", "prompt": "food", "correctAnswer": "comida", "distractors": ["bebida", "ropa", "música"] },
+    { "id": "en-g1-001", "topicId": "t-en-grammar1", "itemType": "grammar", "prompt": "She ___ to school every day.", "correctAnswer": "goes", "distractors": ["go", "going", "went"] },
+    { "id": "en-g1-002", "topicId": "t-en-grammar1", "itemType": "grammar", "prompt": "I ___ born in 1990.", "correctAnswer": "was", "distractors": ["were", "am", "be"] },
+    { "id": "en-g1-003", "topicId": "t-en-grammar1", "itemType": "grammar", "prompt": "They have lived here ___ 2010.", "correctAnswer": "since", "distractors": ["for", "from", "during"] },
+    { "id": "en-g1-004", "topicId": "t-en-grammar1", "itemType": "grammar", "prompt": "She is interested ___ music.", "correctAnswer": "in", "distractors": ["on", "at", "by"] },
+    { "id": "en-g1-005", "topicId": "t-en-grammar1", "itemType": "grammar", "prompt": "___ you speak English?", "correctAnswer": "Can", "distractors": ["Are", "Do", "Have"] },
+    { "id": "en-v2-001", "topicId": "t-en-vocab2", "itemType": "vocab_meaning", "prompt": "to run", "correctAnswer": "correr", "distractors": ["caminar", "nadar", "volar"] },
+    { "id": "en-v2-002", "topicId": "t-en-vocab2", "itemType": "vocab_meaning", "prompt": "to eat", "correctAnswer": "comer", "distractors": ["beber", "dormir", "hablar"] },
+    { "id": "en-v2-003", "topicId": "t-en-vocab2", "itemType": "vocab_meaning", "prompt": "to sleep", "correctAnswer": "dormir", "distractors": ["descansar", "soñar", "despertar"] },
+    { "id": "en-v2-004", "topicId": "t-en-vocab2", "itemType": "vocab_meaning", "prompt": "to work", "correctAnswer": "trabajar", "distractors": ["estudiar", "jugar", "descansar"] },
+    { "id": "en-v2-005", "topicId": "t-en-vocab2", "itemType": "vocab_meaning", "prompt": "to speak", "correctAnswer": "hablar", "distractors": ["escuchar", "leer", "escribir"] }
+  ]
+}

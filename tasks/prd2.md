@@ -223,6 +223,13 @@ Decisión de diseño central acordada: **la velocidad es de interfaz, no cogniti
 - Commands: `npm run typecheck` → clean.
 - Chrome verification: site loads, no console errors.
 
+### 2026-05-30 — SRS-013: Seed content — English and Japanese
+- Created `data/seed-en.json`: 3 topics (Vocabulario esencial L0, Gramática básica L0, Verbos de acción L1) × 18 items with curated distractors.
+- Created `data/seed-ja.json`: 4 topics (Vocabulario básico L0, Hiragana L0, Partículas L1, Kanji L2) × 15 items including vocab_meaning+vocab_reading pairs (baseWordId) and grammar items.
+- Created `lib/vocab/seed.ts`: central loader imported by both practice and dashboard pages. Seed files are plain JSON, editable without touching app code.
+- Commands: `npm run typecheck` → clean; `npm run build` → clean.
+- Chrome verification (localhost:8007): practice shows 18-item English queue; dashboard shows 2 unlocked topics (L0) correctly, locked topic (L1) hidden until level-up. No console errors.
+
 ### 2026-05-30 — SRS-012: Gamification — streak, XP, daily goal
 - Created `lib/vocab/gamification.ts`: `recordAnswer(isCorrect)` → increments XP (10/2 pts), resets daily count on new day, increments streak when daily goal first reached. Persisted in localStorage.
 - Added gamification bar to `PracticeClient`: "XP", "🔥 streak", daily progress bar, "today/goal" counter.

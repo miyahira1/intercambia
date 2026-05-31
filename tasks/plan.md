@@ -34,4 +34,4 @@
 | SRS-010 | Recent-errors review mode | passing |
 | SRS-011 | Occasional production challenges for mastered items | passing |
 | SRS-012 | Gamification — streak, XP, daily goal | passing |
-| SRS-013 | Seed content — English and Japanese | failing |
+| SRS-013 | Seed content — English and Japanese | passing |

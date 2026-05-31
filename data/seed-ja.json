@@ -1,0 +1,25 @@
+{
+  "topics": [
+    { "id": "t-ja-vocab1", "languageCode": "ja", "name": "Vocabulario básico", "requiredLevel": 0, "order": 1 },
+    { "id": "t-ja-kana", "languageCode": "ja", "name": "Hiragana — lectura", "requiredLevel": 0, "order": 2 },
+    { "id": "t-ja-grammar1", "languageCode": "ja", "name": "Partículas básicas", "requiredLevel": 1, "order": 3 },
+    { "id": "t-ja-kanji1", "languageCode": "ja", "name": "Kanji nivel 1", "requiredLevel": 2, "order": 4 }
+  ],
+  "items": [
+    { "id": "ja-v1-001m", "topicId": "t-ja-vocab1", "itemType": "vocab_meaning", "prompt": "猫", "correctAnswer": "gato", "distractors": ["perro", "pájaro", "pez"], "baseWordId": "neko" },
+    { "id": "ja-v1-001r", "topicId": "t-ja-kana",   "itemType": "vocab_reading", "prompt": "猫", "correctAnswer": "ねこ", "distractors": ["いぬ", "とり", "さかな"], "baseWordId": "neko" },
+    { "id": "ja-v1-002m", "topicId": "t-ja-vocab1", "itemType": "vocab_meaning", "prompt": "水", "correctAnswer": "agua", "distractors": ["fuego", "aire", "tierra"], "baseWordId": "mizu" },
+    { "id": "ja-v1-002r", "topicId": "t-ja-kana",   "itemType": "vocab_reading", "prompt": "水", "correctAnswer": "みず", "distractors": ["ひ", "かぜ", "つち"], "baseWordId": "mizu" },
+    { "id": "ja-v1-003m", "topicId": "t-ja-vocab1", "itemType": "vocab_meaning", "prompt": "本", "correctAnswer": "libro", "distractors": ["cuaderno", "lápiz", "borrador"], "baseWordId": "hon" },
+    { "id": "ja-v1-003r", "topicId": "t-ja-kana",   "itemType": "vocab_reading", "prompt": "本", "correctAnswer": "ほん", "distractors": ["かみ", "えんぴつ", "けしごむ"], "baseWordId": "hon" },
+    { "id": "ja-v1-004m", "topicId": "t-ja-vocab1", "itemType": "vocab_meaning", "prompt": "山", "correctAnswer": "montaña", "distractors": ["río", "mar", "valle"], "baseWordId": "yama" },
+    { "id": "ja-v1-004r", "topicId": "t-ja-kana",   "itemType": "vocab_reading", "prompt": "山", "correctAnswer": "やま", "distractors": ["かわ", "うみ", "たに"], "baseWordId": "yama" },
+    { "id": "ja-v1-005m", "topicId": "t-ja-vocab1", "itemType": "vocab_meaning", "prompt": "日", "correctAnswer": "día / sol", "distractors": ["luna", "estrella", "noche"], "baseWordId": "hi" },
+    { "id": "ja-v1-005r", "topicId": "t-ja-kana",   "itemType": "vocab_reading", "prompt": "日", "correctAnswer": "ひ", "distractors": ["つき", "ほし", "よる"], "baseWordId": "hi" },
+    { "id": "ja-g1-001", "topicId": "t-ja-grammar1", "itemType": "grammar", "prompt": "わたし___ がくせいです。", "correctAnswer": "は", "distractors": ["が", "を", "に"] },
+    { "id": "ja-g1-002", "topicId": "t-ja-grammar1", "itemType": "grammar", "prompt": "ほん___ よみます。", "correctAnswer": "を", "distractors": ["は", "が", "で"] },
+    { "id": "ja-g1-003", "topicId": "t-ja-grammar1", "itemType": "grammar", "prompt": "がっこう___ いきます。", "correctAnswer": "に", "distractors": ["へ", "で", "から"] },
+    { "id": "ja-k1-001m", "topicId": "t-ja-kanji1", "itemType": "vocab_meaning", "prompt": "火", "correctAnswer": "fuego", "distractors": ["agua", "tierra", "aire"], "baseWordId": "hi2" },
+    { "id": "ja-k1-002m", "topicId": "t-ja-kanji1", "itemType": "vocab_meaning", "prompt": "木", "correctAnswer": "árbol", "distractors": ["flor", "fruta", "hoja"], "baseWordId": "ki" }
+  ]
+}
